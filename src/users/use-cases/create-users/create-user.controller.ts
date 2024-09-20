@@ -1,7 +1,8 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateUsersUseCase } from './create-user.use-case';
 import { CreateUsersDto } from 'src/users/models/dtos/create-users.dto';
+import { JwtAuthGuard } from 'src/auth/auth.guard';
 
 @ApiTags('Usuario')
 @Controller('user')

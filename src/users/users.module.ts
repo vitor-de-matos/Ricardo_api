@@ -22,6 +22,6 @@ import { UserInterface } from './models/entities/user.entity';
     FindUserUseCase,
     { provide: UsersRepository, useClass: UsersRepository },
   ],
-  exports: [],
+  exports: [UsersRepository],
 })
 export class usersModule {}

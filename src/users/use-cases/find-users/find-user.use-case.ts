@@ -15,9 +15,10 @@ export class FindUserUseCase {
     const queryBuilder = this.userRepository
       .queryBuilder()
       .select([
-        'user.id AS "userId"',
-        'user.name AS "userName"',
-        'user.role AS "userRole"',
+        'user.id AS "User_id"',
+        'user.name AS "User_name"',
+        'user.role AS "User_role"',
+        'user.email AS "User_email"',
       ]);
 
     if (id) {

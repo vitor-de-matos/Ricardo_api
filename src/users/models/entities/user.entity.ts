@@ -15,7 +15,21 @@ export class UserInterface {
 
   @Column({
     type: 'varchar',
-    length: 50,
+    length: 100,
+    unique: true,
+  })
+  email: string;
+
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
+  password: string;
+
+  @Column({
+    type: 'varchar',
+    length: 20,
+    default: UserRole.CLIENTE,
   })
   role: UserRole;
 }
