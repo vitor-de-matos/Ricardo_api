@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderEntity } from 'src/orders/models/entities/orders.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum UserRole {
   PADEIRO = 'padeiro',
@@ -6,7 +7,7 @@ export enum UserRole {
 }
 
 @Entity('users')
-export class UserInterface {
+export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -32,4 +33,7 @@ export class UserInterface {
     default: UserRole.CLIENTE,
   })
   role: UserRole;
+
+  @OneToMany(() => OrderEntity, order => order.user)
+  orders: OrderEntity[];
 }

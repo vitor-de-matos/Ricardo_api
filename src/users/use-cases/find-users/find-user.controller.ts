@@ -11,7 +11,7 @@ export class FindUserController {
     private readonly userService: FindUserUseCase,
   ) {}
 
-  @ApiOperation({ summary: 'Buscar observações' })
+  @ApiOperation({ summary: 'Buscar usuario' })
   @ApiOkResponse({ type: FindUserDto })
   @Get('find')
   async find(@Query() userDto: FindUserDto): Promise<UserDto[]> {

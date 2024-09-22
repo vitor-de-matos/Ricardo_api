@@ -8,13 +8,13 @@ import { Repository, SelectQueryBuilder } from 'typeorm';
 import { CreateUsersDto } from '../dtos/create-users.dto';
 import { FindUserDto } from '../dtos/find-users.dto';
 import { UpdateUserDto } from '../dtos/update-users.dto';
-import { UserInterface } from '../entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 
 @Injectable()
 export class UsersRepository {
   constructor(
-    @InjectRepository(UserInterface)
-    private readonly repository: Repository<UserInterface>,
+    @InjectRepository(UserEntity)
+    private readonly repository: Repository<UserEntity>,
   ) {}
 
   async create(userDto: CreateUsersDto): Promise<boolean> {
@@ -27,7 +27,7 @@ export class UsersRepository {
     return users;
   }
 
-  async findByEmail(email: string): Promise<UserInterface | undefined> {
+  async findByEmail(email: string): Promise<UserEntity | undefined> {
     return await this.repository.findOne({ where: { email } });
   }
 
@@ -61,7 +61,7 @@ export class UsersRepository {
     }
   }
 
-  queryBuilder(): SelectQueryBuilder<UserInterface> {
+  queryBuilder(): SelectQueryBuilder<UserEntity> {
     return this.repository.createQueryBuilder('user');
   }
 }

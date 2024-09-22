@@ -7,10 +7,10 @@ import { DeleteUsersController } from './use-cases/delete-users/delete-user.cont
 import { DeleteUsersUseCase } from './use-cases/delete-users/delete-user.use-case';
 import { FindUserUseCase } from './use-cases/find-users/find-user.use-case';
 import { FindUserController } from './use-cases/find-users/find-user.controller';
-import { UserInterface } from './models/entities/user.entity';
+import { UserEntity } from './models/entities/user.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserInterface])],
+  imports: [TypeOrmModule.forFeature([UserEntity])],
   controllers: [
     CraeteUsersController,
     DeleteUsersController,
