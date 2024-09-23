@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { UserEntity } from 'src/users/models/entities/user.entity';
 @Entity('pedidos')
 export class OrderEntity {
@@ -8,9 +14,10 @@ export class OrderEntity {
   @Column({ type: 'varchar', length: 50 })
   status: string;
 
-  @Column()  
-  user_id: number;
+  @Column({ name: 'user_id' })
+  userId: number;
 
-  @ManyToOne(() => UserEntity, user => user.orders, { onDelete: 'CASCADE' })
+  @ManyToOne(() => UserEntity, (user) => user.orders, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id', foreignKeyConstraintName: 'user_id' })
   user: UserEntity;
 }

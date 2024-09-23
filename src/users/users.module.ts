@@ -8,6 +8,8 @@ import { DeleteUsersUseCase } from './use-cases/delete-users/delete-user.use-cas
 import { FindUserUseCase } from './use-cases/find-users/find-user.use-case';
 import { FindUserController } from './use-cases/find-users/find-user.controller';
 import { UserEntity } from './models/entities/user.entity';
+import { UpdateUserController } from './use-cases/update-users/update-user.controller';
+import { UpdateUserUseCase } from './use-cases/update-users/update-user.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -15,11 +17,13 @@ import { UserEntity } from './models/entities/user.entity';
     CraeteUsersController,
     DeleteUsersController,
     FindUserController,
+    UpdateUserController,
   ],
   providers: [
     CreateUsersUseCase,
     DeleteUsersUseCase,
     FindUserUseCase,
+    UpdateUserUseCase,
     { provide: UsersRepository, useClass: UsersRepository },
   ],
   exports: [UsersRepository],

@@ -7,7 +7,10 @@ export class CreateOrderDto {
   @IsString()
   status: string;
 
-  @ApiProperty({ description: 'ID do usuário associado ao pedido', required: true })
+  @ApiProperty({
+    description: 'ID do usuário associado ao pedido',
+    required: true,
+  })
   @IsNotEmpty()
   userId: number;
 }

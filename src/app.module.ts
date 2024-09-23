@@ -11,7 +11,7 @@ import { orderModule } from './orders/orders.module';
       type: 'sqlite',
       database: 'bakery.db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false,
+      synchronize: true,
     }),
     usersModule,
     orderModule,
@@ -21,6 +21,6 @@ import { orderModule } from './orders/orders.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).exclude('/auth/login')//.forRoutes('*');
+    consumer.apply(AuthMiddleware).exclude('/auth/login'); //.forRoutes('*');
   }
 }
