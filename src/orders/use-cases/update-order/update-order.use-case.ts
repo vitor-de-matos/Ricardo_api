@@ -1,11 +1,11 @@
+import { OrderRepository } from 'src/orders/models/repositories/orders.repository';
+import { UpdateOrderDto } from 'src/orders/models/dtos/update-order.dto';
 import {
-  Inject,
-  Injectable,
   InternalServerErrorException,
   NotFoundException,
+  Injectable,
+  Inject,
 } from '@nestjs/common';
-import { UpdateOrderDto } from 'src/orders/models/dtos/update-order.dto';
-import { OrderRepository } from 'src/orders/models/repositories/orders.repository';
 
 @Injectable()
 export class UpdateOrderUseCase {

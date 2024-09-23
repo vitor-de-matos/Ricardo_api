@@ -1,14 +1,14 @@
-import {
-  Body,
-  Controller,
-  Inject,
-  Param,
-  ParseIntPipe,
-  Patch,
-} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateOrderUseCase } from './update-order.use-case';
 import { UpdateOrderDto } from 'src/orders/models/dtos/update-order.dto';
+import {
+  ParseIntPipe,
+  Controller,
+  Inject,
+  Param,
+  Patch,
+  Body,
+} from '@nestjs/common';
 
 @ApiTags('Pedido')
 @Controller('order')
