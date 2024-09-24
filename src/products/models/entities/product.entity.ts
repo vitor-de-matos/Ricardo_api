@@ -4,8 +4,10 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { CategoryEntity } from 'src/category/models/entities/category.entity';
+import { ProductOrderEntity } from 'src/products-order/models/entities/products-order.entity';
 
 @Entity('produtos')
 export class ProductEntity {
@@ -20,6 +22,9 @@ export class ProductEntity {
 
   @Column({ name: 'categoria_id' })
   categoriaId: number;
+
+  @OneToMany(() => ProductOrderEntity, (pedidoProduto) => pedidoProduto.produto)
+  pedidoProdutos: ProductOrderEntity[];
 
   @ManyToOne(() => CategoryEntity, (category) => category.products, {
     onDelete: 'CASCADE',

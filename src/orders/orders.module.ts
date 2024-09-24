@@ -29,4 +29,4 @@ import { Module } from '@nestjs/common';
   ],
   exports: [OrderRepository],
 })
-export class orderModule {}
+export class OrderModule {}

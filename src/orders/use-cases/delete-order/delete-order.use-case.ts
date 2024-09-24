@@ -4,7 +4,8 @@ import { OrderRepository } from 'src/orders/models/repositories/orders.repositor
 @Injectable()
 export class DeleteOrderUseCase {
   constructor(
-    @Inject(OrderRepository) private readonly orderRespository: OrderRepository,
+    @Inject(OrderRepository)
+    private readonly orderRespository: OrderRepository,
   ) {}
 
   async delete(orderId: number): Promise<void> {

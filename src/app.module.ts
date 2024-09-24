@@ -1,9 +1,12 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { usersModule } from './users/users.module';
+import { UsersModule } from './users/users.module';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { AuthModule } from './auth/auth.module';
-import { orderModule } from './orders/orders.module';
+import { OrderModule } from './orders/orders.module';
+import { CategoryModule } from './category/category.module';
+import { ProductModule } from './products/product.module';
+import { ProductOrderModule } from './products-order/product-order.module';
 
 @Module({
   imports: [
@@ -13,14 +16,17 @@ import { orderModule } from './orders/orders.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    usersModule,
-    orderModule,
+    UsersModule,
+    CategoryModule,
+    ProductModule,
+    ProductOrderModule,
+    OrderModule,
     AuthModule,
   ],
   providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).exclude('/auth/login'); //.forRoutes('*');
+    consumer.apply(AuthMiddleware).exclude('/auth/login'); //.forRoutes('*');//comente esta linha para desativar o Auth
   }
 }

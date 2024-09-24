@@ -21,7 +21,7 @@ export class AuthMiddleware implements NestMiddleware {
 
     try {
       const decoded = this.jwtService.verify(token);
-      req.user = decoded; // Adiciona as informações do usuário na requisição
+      req.user = decoded;
       next();
     } catch (err) {
       throw new UnauthorizedException('Token inválido');

@@ -22,6 +22,15 @@ export class CategoryRepository {
     return !!result;
   }
 
+  async categoryExists(
+    categoryName: string,
+  ): Promise<CategoryEntity | undefined> {
+    const category = await this.repository.findOne({
+      where: { nome: categoryName },
+    });
+    return category;
+  }
+
   async find(findCategoryDto: FindCategoryDto): Promise<FindCategoryDto[]> {
     const category = await this.repository.find();
     return category;

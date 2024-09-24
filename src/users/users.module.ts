@@ -15,17 +15,17 @@ import { UpdateUserUseCase } from './use-cases/update-users/update-user.use-case
   imports: [TypeOrmModule.forFeature([UserEntity])],
   controllers: [
     CraeteUsersController,
-    DeleteUsersController,
     FindUserController,
+    DeleteUsersController,
     UpdateUserController,
   ],
   providers: [
     CreateUsersUseCase,
-    DeleteUsersUseCase,
     FindUserUseCase,
+    DeleteUsersUseCase,
     UpdateUserUseCase,
     { provide: UsersRepository, useClass: UsersRepository },
   ],
   exports: [UsersRepository],
 })
-export class usersModule {}
+export class UsersModule {}
