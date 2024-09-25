@@ -20,7 +20,10 @@ export class UpdateProductOrderUseCase {
   ): Promise<void> {
     const productOrderExists = await this.productOrderRepository.findById(id);
     if (!productOrderExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'PRODUCT_ORDER_NOT_FOUND',
+        message: 'Pedido de Produto não encontrado',
+      });
     }
     try {
       await this.productOrderRepository.update(id, productOrderDto);

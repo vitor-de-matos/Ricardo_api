@@ -1,11 +1,11 @@
+import { UsersRepository } from 'src/users/models/repositories/users.repository';
+import { UpdateUserDto } from 'src/users/models/dtos/update-users.dto';
 import {
-  Inject,
-  Injectable,
   InternalServerErrorException,
   NotFoundException,
+  Injectable,
+  Inject,
 } from '@nestjs/common';
-import { UpdateUserDto } from 'src/users/models/dtos/update-users.dto';
-import { UsersRepository } from 'src/users/models/repositories/users.repository';
 
 @Injectable()
 export class UpdateUserUseCase {
@@ -17,7 +17,10 @@ export class UpdateUserUseCase {
   async update(id: number, userDto: UpdateUserDto): Promise<void> {
     const userExists = await this.userRepository.findById(id);
     if (!userExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'USER_NOT_FOUND',
+        message: 'Usuario não encontrado',
+      });
     }
     try {
       await this.userRepository.update(id, userDto);

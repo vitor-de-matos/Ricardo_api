@@ -1,14 +1,14 @@
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UpdateUserDto } from 'src/users/models/dtos/update-users.dto';
+import { UpdateUserUseCase } from './update-user.use-case';
 import {
-  Body,
+  ParseIntPipe,
   Controller,
   Inject,
   Param,
-  ParseIntPipe,
   Patch,
+  Body,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UpdateUserUseCase } from './update-user.use-case';
-import { UpdateUserDto } from 'src/users/models/dtos/update-users.dto';
 
 @ApiTags('Usuario')
 @Controller('user')
@@ -19,12 +19,13 @@ export class UpdateUserController {
   ) {}
 
   @ApiOperation({ summary: 'Modificar usuario' })
+  @ApiOkResponse({ description: 'Usuario atualizado com sucesso' })
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateDto: UpdateUserDto,
   ): Promise<string> {
     await this.updateUserService.update(id, updateDto);
-    return 'Usuario atualizada com sucesso';
+    return 'Usuario atualizado com sucesso';
   }
 }

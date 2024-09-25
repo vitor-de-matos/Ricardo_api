@@ -16,14 +16,14 @@ import { UpdateCategoryUseCase } from './use-cases/update-category/update-catego
   controllers: [
     CreateCategoryController,
     FindCategoryController,
-    DeleteCategoryController,
     UpdateCategoryController,
+    DeleteCategoryController,
   ],
   providers: [
     CreateCategoryUseCase,
     FindCategoryuseCase,
-    DeleteCategoryUseCase,
     UpdateCategoryUseCase,
+    DeleteCategoryUseCase,
     { provide: CategoryRepository, useClass: CategoryRepository },
   ],
   exports: [CategoryRepository],

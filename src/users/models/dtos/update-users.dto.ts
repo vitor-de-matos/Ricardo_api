@@ -11,14 +11,14 @@ import { UserRole } from '../entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
-  @ApiProperty({ required: false })
+  @ApiProperty({ description: 'Nome do Usuario', required: false })
   @IsOptional()
   @IsString()
   @MaxLength(255)
   name?: string;
 
   @ApiProperty({ description: 'Email do Usuario', required: false })
-  @IsNotEmpty()
+  @IsOptional()
   @IsEmail()
   @MaxLength(100)
   email?: string;
@@ -31,6 +31,7 @@ export class UpdateUserDto {
   password?: string;
 
   @ApiProperty({
+    description: 'Função do Usuario',
     required: false,
     enum: UserRole,
     nullable: true,

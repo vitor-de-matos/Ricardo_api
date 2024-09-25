@@ -51,3 +51,17 @@ export class UserDto {
   @IsEnum(UserRole)
   role: UserRole;
 }
+
+export class UserFoundDto {
+  @ApiProperty({ example: 1, description: 'id do usuario' })
+  User_id: number;
+
+  @ApiProperty({ example: 'ze', description: 'nome do usuario' })
+  User_name: string;
+
+  @ApiProperty({ example: 'padeiro', description: 'função do usuario' })
+  User_role: string;
+
+  @ApiProperty({ example: 'email@123.com', description: 'email do usuario' })
+  User_email: string;
+}

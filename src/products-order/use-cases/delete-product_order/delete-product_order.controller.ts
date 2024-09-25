@@ -16,8 +16,8 @@ export class DeleteProductOrderController {
     private readonly productOrderService: DeleteProductOrderUseCase,
   ) {}
 
-  @ApiOperation({})
-  @ApiOkResponse()
+  @ApiOperation({ summary: 'Remover pedido de produto' })
+  @ApiOkResponse({ description: 'Pedido de produto deletado com sucesso' })
   @Delete(':productOrderId/Delete')
   async delete(
     @Param('productOrderId', ParseIntPipe) productOrderId: number,

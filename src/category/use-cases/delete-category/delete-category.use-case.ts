@@ -11,7 +11,10 @@ export class DeleteCategoryUseCase {
   async delete(categoryId: number): Promise<void> {
     const categoryExists = await this.categoryRepository.findById(categoryId);
     if (!categoryExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'CATEGORY_NOT_FOUND',
+        message: 'Categoria não encontrada',
+      });
     }
     await this.categoryRepository.delete(categoryId);
   }

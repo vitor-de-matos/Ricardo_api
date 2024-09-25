@@ -11,7 +11,10 @@ export class DeleteOrderUseCase {
   async delete(orderId: number): Promise<void> {
     const orderExists = await this.orderRespository.findById(orderId);
     if (!orderExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'ORDER_NOT_FOUND',
+        message: 'Pedido não encontrado',
+      });
     }
     await this.orderRespository.delete(orderId);
   }

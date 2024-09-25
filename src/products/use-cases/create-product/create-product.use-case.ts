@@ -1,6 +1,6 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
-import { CreateProductDto } from 'src/products/models/dtos/create-product.dto';
 import { ProductRepository } from 'src/products/models/repositories/product.repository';
+import { CreateProductDto } from 'src/products/models/dtos/create-product.dto';
 
 @Injectable()
 export class CreateProductUseCase {
@@ -14,7 +14,10 @@ export class CreateProductUseCase {
       productDto.nome,
     );
     if (productExists) {
-      throw new ConflictException();
+      throw new ConflictException({
+        code: 'ALREADY_EXISTS',
+        message: 'Produto ja cadastrado',
+      });
     }
     await this.productRepository.create(productDto);
     return true;

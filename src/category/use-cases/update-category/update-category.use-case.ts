@@ -17,7 +17,10 @@ export class UpdateCategoryUseCase {
   async update(id: number, categoryDto: UpdateCategoryDto): Promise<void> {
     const categoryExists = await this.categoryRepository.findById(id);
     if (!categoryExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'CATEGORY_NOT_FOUND',
+        message: 'Categoria não encontrada',
+      });
     }
     try {
       await this.categoryRepository.update(id, categoryDto);

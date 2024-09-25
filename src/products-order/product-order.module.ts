@@ -10,9 +10,10 @@ import { UpdateProductOrderUseCase } from './use-cases/update-product_order/upda
 import { ProductOrderRepository } from './models/repositories/product-order.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductOrderEntity } from './models/entities/products-order.entity';
+import { ProductModule } from 'src/products/product.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProductOrderEntity])],
+  imports: [TypeOrmModule.forFeature([ProductOrderEntity]), ProductModule],
   controllers: [
     CreateProductOrderController,
     FindProductOrderController,

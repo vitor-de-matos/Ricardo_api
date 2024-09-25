@@ -1,9 +1,9 @@
+import { CategoryRepository } from 'src/category/models/repositories/category.repository';
 import { Inject, Injectable } from '@nestjs/common';
 import {
-  CategoryDto,
   FindCategoryDto,
+  CategoryDto,
 } from 'src/category/models/dtos/find-category.dto';
-import { CategoryRepository } from 'src/category/models/repositories/category.repository';
 
 @Injectable()
 export class FindCategoryuseCase {

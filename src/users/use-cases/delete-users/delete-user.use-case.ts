@@ -10,9 +10,7 @@ export class DeleteUsersUseCase {
   ) {}
 
   async delete(userId: number): Promise<void> {
-    const userExists = await this.usersRepository.find({
-      id: userId,
-    });
+    const userExists = await this.usersRepository.findById(userId);
     if (userExists == null) {
       throw new NotFoundException({
         code: 'USER_NOT_FOUND',

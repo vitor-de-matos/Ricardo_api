@@ -1,12 +1,12 @@
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { DeleteProductUseCase } from './delete-product.use-case';
 import {
+  ParseIntPipe,
   Controller,
   Delete,
   Inject,
   Param,
-  ParseIntPipe,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { DeleteProductUseCase } from './delete-product.use-case';
 
 @ApiTags('Produtos')
 @Controller('product')
@@ -16,8 +16,8 @@ export class DeleteProductController {
     private readonly productService: DeleteProductUseCase,
   ) {}
 
-  @ApiOperation({})
-  @ApiOkResponse()
+  @ApiOperation({ summary: 'Remover produto' })
+  @ApiOkResponse({ description: 'Produto deletado com sucesso' })
   @Delete(':productId/Delete')
   async delete(
     @Param('productId', ParseIntPipe) productId: number,

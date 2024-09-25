@@ -1,12 +1,12 @@
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { DeleteCategoryUseCase } from './delete-category.use-case';
 import {
+  ParseIntPipe,
   Controller,
   Delete,
   Inject,
   Param,
-  ParseIntPipe,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { DeleteCategoryUseCase } from './delete-category.use-case';
 
 @ApiTags('Categoria')
 @Controller('category')
@@ -16,8 +16,8 @@ export class DeleteCategoryController {
     private readonly categoryService: DeleteCategoryUseCase,
   ) {}
 
-  @ApiOperation({})
-  @ApiOkResponse()
+  @ApiOperation({ summary: 'Remover categoria' })
+  @ApiOkResponse({ description: 'Categoria deletada com sucesso' })
   @Delete(':categoryId/Delete')
   async delete(
     @Param('categoryId', ParseIntPipe) categoryId: number,

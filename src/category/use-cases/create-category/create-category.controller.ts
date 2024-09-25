@@ -1,5 +1,5 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateCategoryUseCase } from './create-category.use-case';
 import { CreateCategoryDto } from 'src/category/models/dtos/create-category.dto';
 
@@ -11,10 +11,11 @@ export class CreateCategoryController {
     private readonly categoryService: CreateCategoryUseCase,
   ) {}
 
-  @ApiOperation({})
+  @ApiOperation({ summary: 'Criar categoria' })
+  @ApiOkResponse({ description: 'Categoria criada com sucesso' })
   @Post('create')
   async create(@Body() CategoryDto: CreateCategoryDto): Promise<string> {
     await this.categoryService.create(CategoryDto);
-    return 'deu boa';
+    return 'Categoria criada com sucesso';
   }
 }

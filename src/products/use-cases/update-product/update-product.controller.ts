@@ -1,14 +1,14 @@
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UpdateProductUseCase } from './update-product.use-case';
+import { UpdateProductDto } from 'src/products/models/dtos/update-product.dto';
 import {
-  Body,
+  ParseIntPipe,
   Controller,
   Inject,
   Param,
-  ParseIntPipe,
   Patch,
+  Body,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UpdateProductUseCase } from './update-product.use-case';
-import { UpdateProductDto } from 'src/products/models/dtos/update-product.dto';
 
 @ApiTags('Produtos')
 @Controller('product')
@@ -19,6 +19,7 @@ export class UpdateProductController {
   ) {}
 
   @ApiOperation({ summary: 'Modificar produto' })
+  @ApiOkResponse({ description: 'Produto atualizado com sucesso' })
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id: number,

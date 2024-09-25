@@ -14,7 +14,10 @@ export class CreateCategoryUseCase {
       categoryDto.nome,
     );
     if (categoryExists) {
-      throw new ConflictException();
+      throw new ConflictException({
+        code: 'ALREADY_EXISTS',
+        message: 'Categoria já existe',
+      });
     }
     await this.categoryRepository.create(categoryDto);
     return true;

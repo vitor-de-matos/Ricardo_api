@@ -1,5 +1,5 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateProductUseCase } from './create-product.use-case';
 import { CreateProductDto } from 'src/products/models/dtos/create-product.dto';
 
@@ -11,10 +11,11 @@ export class CreateProductController {
     private readonly productService: CreateProductUseCase,
   ) {}
 
-  @ApiOperation({})
+  @ApiOperation({ summary: 'Criar produto' })
+  @ApiOkResponse({ description: 'Produto criado com sucesso' })
   @Post('create')
   async create(@Body() productDto: CreateProductDto): Promise<string> {
     await this.productService.create(productDto);
-    return 'deu boa';
+    return 'Produto criado com sucesso';
   }
 }

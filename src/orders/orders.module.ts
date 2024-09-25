@@ -16,14 +16,14 @@ import { Module } from '@nestjs/common';
   controllers: [
     CreateOrderController,
     FindOrderController,
-    DeleteOrderController,
     UpdateOrderController,
+    DeleteOrderController,
   ],
   providers: [
     CreateOrderUseCase,
     FindOrderUseCase,
-    DeleteOrderUseCase,
     UpdateOrderUseCase,
+    DeleteOrderUseCase,
 
     { provide: OrderRepository, useClass: OrderRepository },
   ],

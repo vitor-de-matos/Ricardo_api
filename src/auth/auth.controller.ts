@@ -1,12 +1,17 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Inject } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUsersDto } from 'src/users/models/dtos/create-users.dto';
 import { LoginDto } from './models/dtos/login.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Login')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    @Inject(AuthService)
+    private readonly authService: AuthService,
+  ) {}
 
+  @ApiOperation({ summary: 'Logar' })
   @Post('login')
   async login(@Body() userDto: LoginDto) {
     const user = await this.authService.validateUser(

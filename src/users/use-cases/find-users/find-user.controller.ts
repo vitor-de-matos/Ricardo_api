@@ -1,6 +1,10 @@
 import { Controller, Get, Inject, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { FindUserDto, UserDto } from 'src/users/models/dtos/find-users.dto';
+import {
+  FindUserDto,
+  UserDto,
+  UserFoundDto,
+} from 'src/users/models/dtos/find-users.dto';
 import { FindUserUseCase } from './find-user.use-case';
 
 @ApiTags('Usuario')
@@ -12,7 +16,7 @@ export class FindUserController {
   ) {}
 
   @ApiOperation({ summary: 'Buscar usuario' })
-  @ApiOkResponse({ type: FindUserDto })
+  @ApiOkResponse({ type: UserFoundDto })
   @Get('find')
   async find(@Query() userDto: FindUserDto): Promise<UserDto[]> {
     return await this.userService.find(userDto);

@@ -1,5 +1,5 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateProductOrderUseCase } from './create-product_order.use-case';
 import { CreateProductOrderDto } from 'src/products-order/models/dtos/create-products_order.dto';
 
@@ -11,12 +11,13 @@ export class CreateProductOrderController {
     private readonly productOrderService: CreateProductOrderUseCase,
   ) {}
 
-  @ApiOperation({})
+  @ApiOperation({ summary: 'Criar pedido do produto' })
+  @ApiOkResponse({ description: 'Pedido do produto criado com sucesso' })
   @Post('create')
   async create(
     @Body() productOrderDto: CreateProductOrderDto,
   ): Promise<string> {
     await this.productOrderService.create(productOrderDto);
-    return 'deu boa';
+    return 'Pedido do produto criado com sucesso';
   }
 }

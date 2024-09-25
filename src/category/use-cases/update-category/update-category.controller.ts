@@ -1,14 +1,14 @@
+import { UpdateCategoryUseCase } from './update-category.use-case';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UpdateCategoryDto } from 'src/category/models/dtos/update-category.dto';
 import {
-  Body,
+  ParseIntPipe,
   Controller,
   Inject,
   Param,
-  ParseIntPipe,
   Patch,
+  Body,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UpdateCategoryUseCase } from './update-category.use-case';
-import { UpdateCategoryDto } from 'src/category/models/dtos/update-category.dto';
 
 @ApiTags('Categoria')
 @Controller('category')
@@ -19,6 +19,7 @@ export class UpdateCategoryController {
   ) {}
 
   @ApiOperation({ summary: 'Modificar categoria' })
+  @ApiOkResponse({ description: 'Categoria atualizada com sucesso' })
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id: number,

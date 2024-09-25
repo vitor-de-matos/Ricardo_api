@@ -1,12 +1,12 @@
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { DeleteOrderUseCase } from './delete-order.use-case';
 import {
+  ParseIntPipe,
   Controller,
   Delete,
   Inject,
   Param,
-  ParseIntPipe,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { DeleteOrderUseCase } from './delete-order.use-case';
 
 @ApiTags('Pedido')
 @Controller('order')
@@ -16,8 +16,8 @@ export class DeleteOrderController {
     private readonly orderService: DeleteOrderUseCase,
   ) {}
 
-  @ApiOperation({})
-  @ApiOkResponse()
+  @ApiOperation({ summary: 'Remover pedido' })
+  @ApiOkResponse({ description: 'Pedido deletado com sucesso' })
   @Delete(':orderId/Delete')
   async delete(
     @Param('orderId', ParseIntPipe) orderId: number,

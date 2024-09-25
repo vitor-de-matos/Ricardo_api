@@ -17,7 +17,10 @@ export class UpdateOrderUseCase {
   async update(id: number, orderDto: UpdateOrderDto): Promise<void> {
     const orderExists = await this.orderRepository.findById(id);
     if (!orderExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'ORDER_NOT_FOUND',
+        message: 'Pedido não encontrado',
+      });
     }
 
     try {

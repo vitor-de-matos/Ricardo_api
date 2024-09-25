@@ -1,11 +1,11 @@
+import { ProductRepository } from 'src/products/models/repositories/product.repository';
+import { UpdateProductDto } from 'src/products/models/dtos/update-product.dto';
 import {
-  Inject,
-  Injectable,
   InternalServerErrorException,
   NotFoundException,
+  Injectable,
+  Inject,
 } from '@nestjs/common';
-import { UpdateProductDto } from 'src/products/models/dtos/update-product.dto';
-import { ProductRepository } from 'src/products/models/repositories/product.repository';
 
 @Injectable()
 export class UpdateProductUseCase {
@@ -17,7 +17,10 @@ export class UpdateProductUseCase {
   async update(id: number, productDto: UpdateProductDto): Promise<void> {
     const productExists = await this.productRepository.findById(id);
     if (!productExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'PRODUCT_NOT_FOUND',
+        message: 'Produto não encontrado',
+      });
     }
     try {
       await this.productRepository.update(id, productDto);

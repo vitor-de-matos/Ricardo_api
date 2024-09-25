@@ -11,7 +11,10 @@ export class DeleteProductUseCase {
   async delete(productId: number): Promise<void> {
     const productExists = await this.productRepository.findById(productId);
     if (!productExists) {
-      throw new NotFoundException();
+      throw new NotFoundException({
+        code: 'PRODUCT_NOT_FOUND',
+        message: 'Produto não encontrado',
+      });
     }
     await this.productRepository.delete(productId);
   }

@@ -22,6 +22,16 @@ export class FindProductUseCase {
     if (id !== undefined && id !== null) {
       queryBuilder.andWhere('product.id = :id', { id });
     }
+    if (categoriaId !== undefined && categoriaId !== null) {
+      queryBuilder.andWhere('product.categoriaId = :categoriaId', {
+        categoriaId,
+      });
+    }
+    if (nome !== undefined && nome !== null) {
+      queryBuilder.andWhere('LOWER(product.nome) LIKE LOWER(:nome)', {
+        nome: `%${nome}%`,
+      });
+    }
 
     const product = await queryBuilder.getRawMany();
     return product;

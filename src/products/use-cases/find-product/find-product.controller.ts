@@ -15,7 +15,7 @@ export class FindProductController {
   ) {}
 
   @ApiOperation({ summary: 'Buscar produtos' })
-  @ApiOkResponse()
+  @ApiOkResponse({ type: ProductDto })
   @Get('find')
   async find(@Query() productDto: FindProductDto): Promise<ProductDto[]> {
     return await this.productService.find(productDto);

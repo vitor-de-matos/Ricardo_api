@@ -1,4 +1,4 @@
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateOrderUseCase } from './update-order.use-case';
 import { UpdateOrderDto } from 'src/orders/models/dtos/update-order.dto';
 import {
@@ -19,6 +19,7 @@ export class UpdateOrderController {
   ) {}
 
   @ApiOperation({ summary: 'Modificar pedido' })
+  @ApiOkResponse({ description: 'Pedido atalizado com sucesso' })
   @Patch('update/:id')
   async update(
     @Param('id', ParseIntPipe) id: number,

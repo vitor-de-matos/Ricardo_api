@@ -22,23 +22,6 @@ export class FindProductOrderDto {
   @IsOptional()
   @IsNumber()
   produtoId: number;
-
-  @ApiProperty({
-    description: 'Buscar pela quantidade do Produto',
-    required: false,
-  })
-  @IsOptional()
-  @IsNumber()
-  @IsPositive()
-  quantidade: number;
-
-  @ApiProperty({
-    description: 'Buscar por preço total do pedido',
-    required: false,
-  })
-  @IsOptional()
-  @IsDecimal()
-  precoTotal: number;
 }
 
 export class ProductOrderDto {
